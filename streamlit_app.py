@@ -7,7 +7,9 @@ st.title("💬 AI 챗봇")
 with st.sidebar:
     st.header("설정")
 
-    openai_api_key = st.text_input("OpenAI API Key", type="password")
+    openai_api_key = st.secrets.get("OPENAI_API_KEY", "") if hasattr(st, "secrets") else ""
+    if not openai_api_key:
+        openai_api_key = st.text_input("OpenAI API Key", type="password")
 
     st.divider()
 
